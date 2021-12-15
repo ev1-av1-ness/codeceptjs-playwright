@@ -30,12 +30,15 @@ exports.config = {
       url: '',
       //url: process.env.URL,
       //browser: process.profile
-      show: true,
-      browser: 'webkit'
+      show: false,
+      browser: 'chromium'
       //emulate: { devices['iPhone 11', 'Android'],
       //isMobile: true,
       //deviceScaleFactor: 2
       //}
+    },
+    MyPlaywright: {
+      require: './helpers/myplaywright_helper.js',
     },
     ChaiWrapper : {
       require: 'codeceptjs-chai'
