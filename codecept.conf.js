@@ -1,3 +1,5 @@
+const ConfigHelper = require('./helpers/config_helper');
+
 //const { setHeadlessWhen } = require('@codeceptjs/configure');
 
 // turn on headless mode when running with HEADLESS=true environment variable
@@ -27,7 +29,7 @@ exports.config = {
   output: './output',
   helpers: {
     Playwright: {
-      url: '',
+      url: ConfigHelper.getUrl(),
       //url: process.env.URL,
       //browser: process.profile
       show: false,
