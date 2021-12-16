@@ -1,8 +1,8 @@
-const { I, mwebMainPage } = inject();
+const { I, mwebheader } = inject();
 
 module.exports = {
     
-  signInButton:'',
+  signInButton:'#',
   
 
 openSignUpForm() {

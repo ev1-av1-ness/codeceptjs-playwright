@@ -1,41 +1,58 @@
-//const { setHeadlessWhen } = require('@codeceptjs/configure');
+const ConfigHelper = require('./helpers/config_helper.js');
+
+const { setHeadlessWhen } = require('@codeceptjs/configure');
+
 
 // turn on headless mode when running with HEADLESS=true environment variable
-// export HEADLESS=true && npx codeceptjs run
-// setHeadlessWhen(process.env.HEADLESS);
+// HEADLESS=true && npx codeceptjs run
+setHeadlessWhen(process.env.CI);
 
-//now you can use codeceptjs run --profile firefox
+//???now you can use codeceptjs run --profile firefox
 
 exports.config = {
   tests: './*/*_test.js',
   multiple: {
-  //   basic: {
-  //     browsers: [
-  //     'firefox',
-  //     'chrome'
-  // ]
-  //   },
-      smoke: {
-        grep: '@smoke',
+    basic: {
+      browsers: [
+        'firefox',
+        'chromium',
+        'webkit'
+      ]
+    },
+    smoke: {
+      grep: '@smoke',
         browsers: [
-          'chrome',
-          'firefox',
-          'safari'
-        ]
-      }
+        'chromium',
+        'firefox',
+        'webkit'
+      ]
+    },
+    mobile: {
+      grep: '@mobile',
+      browsers: [
+        'chromium',
+        'webkit'
+      ]
+    }
   },
   output: './output',
   helpers: {
     Playwright: {
-      url: '',
-      //url: process.env.URL,
-      //browser: process.profile
-      show: true,
-      browser: 'webkit'
+      //подразумевается, что в этом блоке здесь я могу добавить 2 конфига, 
+      //один для мобильных, другой для десктопа,
+      //в каждом из них описать параллелизацию, например, в 4 потока вебмобилки,
+      //в 8 потоков десктопвеб
+      //как-то так?
+      url: ConfigHelper.getUrl(),
+      browser: ConfigHelper.getBrowser(),
+      show: false,
       //emulate: { devices['iPhone 11', 'Android'],
-      //isMobile: true,
+      //isMobile: true,        //эти три строчки вынести в отдельный конфиг для мобилок?
       //deviceScaleFactor: 2
       //}
+    },
+    MyPlaywright: {
+        require: './helpers/myplaywright_helper.js'
     },
     ChaiWrapper : {
       require: 'codeceptjs-chai'
@@ -43,9 +60,10 @@ exports.config = {
   },
   include: {
     I: './steps_file.js',
-    mainPage: './pages/mainPage.js',
-    mwebMainPage: './pages/mobilewebpages/mwebMainPage.js',
-    signInForm: './pages/signInForm.js'
+    header: './pages/header.js',
+    mwebheader: './pages/mobilewebpages/mwebheader.js',
+    signInForm: './pages/signInForm.js',
+    signUpForm: './pages/signUpForm.js',
   },
   bootstrap: null,
   mocha: {},
@@ -63,6 +81,7 @@ exports.config = {
     },
     screenshotOnFail: {
       enabled: true
-    }
+    },
+    video: true
   }
 }
