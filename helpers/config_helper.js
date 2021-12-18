@@ -1,3 +1,5 @@
+const { devices } = require("playwright");
+
 class ConfigHelper {
     static getUrl() {
         if (process.env.URL) {
@@ -8,7 +10,6 @@ class ConfigHelper {
 
     }
 
-    //я попробовала и с браузером так сделать
     static getBrowser() {
         if (process.env.BROWSER) {
             return '${process.env.BROWSER}'
@@ -16,8 +17,23 @@ class ConfigHelper {
 
         return 'chromium'
 
-    }   
+    }
+    
+    static getOSMobile() {
+        if (process.env.OSMOBILE) {
+            return devices['${process.env.OSMOBILE} 11']
+        }
+        
+        return 'Pixel 3'
+    }
 
+    static getBrowserMobile() {
+        if (devices['iPhone 11']) {
+            return 'webkit'
+        }
+        
+        return 'chromium'
+    }
 }
 
 module.exports = ConfigHelper;

@@ -10,7 +10,7 @@ setHeadlessWhen(process.env.CI);
 //???now you can use codeceptjs run --profile firefox
 
 exports.config = {
-  tests: './*/*_test.js',
+  tests: './web-tests/*_test.js',
   multiple: {
     basic: {
       browsers: [
@@ -27,29 +27,25 @@ exports.config = {
         'webkit'
       ]
     },
-    mobile: {
-      grep: '@mobile',
-      browsers: [
-        'chromium',
-        'webkit'
-      ]
-    }
+    // mobile: {
+    //   grep: '@mobile',
+    //   browsers: [
+    //     'chromium',
+    //     'webkit'
+    //   ]
+    // }
+    regression: {
+      grep: '@regression', //howto:  https://codecept.io/commands/#run-multiple
+        browsers: 'chromium'
+    }, 
   },
   output: './output',
   helpers: {
     Playwright: {
-      //подразумевается, что в этом блоке здесь я могу добавить 2 конфига, 
-      //один для мобильных, другой для десктопа,
-      //в каждом из них описать параллелизацию, например, в 4 потока вебмобилки,
-      //в 8 потоков десктопвеб
-      //как-то так?
       url: ConfigHelper.getUrl(),
       browser: ConfigHelper.getBrowser(),
       show: false,
-      //emulate: { devices['iPhone 11', 'Android'],
-      //isMobile: true,        //эти три строчки вынести в отдельный конфиг для мобилок?
-      //deviceScaleFactor: 2
-      //}
+      ignoreHTTPSErrors: true,
     },
     MyPlaywright: {
         require: './helpers/myplaywright_helper.js'
@@ -64,6 +60,9 @@ exports.config = {
     mwebheader: './pages/mobilewebpages/mwebheader.js',
     signInForm: './pages/signInForm.js',
     signUpForm: './pages/signUpForm.js',
+    cashierPage: './pages/cashierPage/cashierPage.js',
+    depositForm: './pages/cashierPage/depositForm.js',
+    depositFundsTab: './pages/cashierPage/depositFundsTab.js'
   },
   bootstrap: null,
   mocha: {},

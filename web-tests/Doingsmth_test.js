@@ -42,7 +42,7 @@ Scenario('Doing smth ', async ({ I, header, signUpForm }) => {
         console.log(expectedBalance);
 
     I.assertEqual(actualBalanceAsNumber, expectedBalance);
-}).tag('@complex');
+}).tag('@mobile').tag('@desktop');
 
 
 //написать тест с модалкой

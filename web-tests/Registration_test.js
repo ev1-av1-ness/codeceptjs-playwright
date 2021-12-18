@@ -13,4 +13,4 @@ Scenario('Registration with correct credentials', ({ I, header, signUpForm }) =>
     signUpForm.signUp(randomEmail, randomPass)
     I.seeInCurrentUrl('/nextPage');
     I.seeElement('#element') 
-});
+}).tag('@mobile').tag('@desktop');

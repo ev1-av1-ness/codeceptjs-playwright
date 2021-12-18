@@ -16,4 +16,4 @@ Scenario('Buy smth', ({ I, header, signUpForm }) => {
     I.seeInCurrentUrl('/afternextpage')
     I.seeElement('#element')
 //todo
-}).tag('@new');
+}).tag('@mobile').tag('@desktop');

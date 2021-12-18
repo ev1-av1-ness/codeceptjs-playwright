@@ -8,4 +8,4 @@ Scenario('Login with correct credentials', ({ I, header, signInForm }) => {
     I.seeInCurrentUrl('/nextpage');
     I.waitForVisible('#element') 
     //не поняла, чем отличается по доке I.seeElement и I.waitForVisible
-});
+}).tag('@mobile').tag('@desktop');
