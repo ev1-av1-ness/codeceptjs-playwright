@@ -26,14 +26,6 @@ class ConfigHelper {
         
         return 'Pixel 3'
     }
-
-    static getBrowserMobile() {
-        if (devices['iPhone 11']) {
-            return 'webkit'
-        }
-        
-        return 'chromium'
-    }
 }
 
 module.exports = ConfigHelper;

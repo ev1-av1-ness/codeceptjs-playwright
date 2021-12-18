@@ -1,9 +1,11 @@
 const { devices } = require('playwright');
 var faker = require('faker');
 
-Feature('Other authorization')
+Feature('Other authorization') //сюьт
 
-Scenario('Login withcorrect credentials', ({I, header, signInForm}) => {
+//перезапуск теста тэг платформа 
+
+Scenario('Login withcorrect credentials', ({I, header, signInForm}) => { //наименование теста 
     session('mobile user', devices['Pixel 3'], () => {
         I.amOnPage('/')
         header.mobOpenSignUpForm()
@@ -15,7 +17,7 @@ Scenario('Login withcorrect credentials', ({I, header, signInForm}) => {
         signInForm.signIn('','12345')
         I.see('Success')
     })
-}).tag('@mobile').tag('@desktop'); //и так для большинства. 
+}); //и так для большинства. 
 //но есть некоторые только для @desktop. помогут ли тэги их разделить в параллелизации?
 //пока сделала 2 конфига, но они опираются на директории. 
 //если они будут опираться вот так

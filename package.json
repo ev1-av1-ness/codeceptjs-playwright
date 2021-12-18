@@ -5,7 +5,11 @@
     "main": "index.js",
     "scripts": {
         "codeceptjs:test": "npx codeceptjs run --config=codecept.conf.js --debug",
-        "generate:autocompletion": "npx codeceptjs def --config codecept.conf.js"
+        "generate:autocompletion": "npx codeceptjs def --config codecept.conf.js",
+        "mweb": "codeceptjs run --config=mobile.conf.js --debug",
+        "web": "npx codeceptjs run --debug",
+        "ci-smoke": "BROWSER=webkit yarn mweb || yarn web",
+        "ci-regression": "BROWSER=webkit yarn web run-workers ${THREADS:-10} ||  BROWSER=firefox yarn web run-workers ${THREADS:-10} || BROWSER=webkit yarn mweb run-workers ${THREADS:-10}"
     },
     "keywords": [],
     "author": "",
