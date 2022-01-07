@@ -4,7 +4,13 @@ Navigate to the local folder where your repo was cloned and run:
 
 ```
 npm install
-npx codeceptjs run --steps
+yarn
+```
+
+To run tests:
+```
+yarn web
+yarn mobile
 ```
 
 ### Feature plans:
@@ -46,7 +52,6 @@ npx codeceptjs run --steps
 * Поддержка и ревью от FE разработчиков.
 * Headless режим
 * Даже линтер
-* Если что-то не хватает в Playwright, всегда можно использовать WebDriver - код на CodeceptJs будет тем же
 
 
 ### Общие минусы:
